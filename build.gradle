@@ -33,6 +33,6 @@ dependencies {
 	implementation 'junit:junit:4.12'
 }
 
-test {
-	useJUnitPlatform()
-}
+//test {
+//	useJUnitPlatform()
+//} --> 이거는 junit5 쓸 때 사용함
