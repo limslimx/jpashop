@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Getter @Setter
-@Entity
 @Table(name = "orders")
+@Entity
 public class Order {
 
     @Id @GeneratedValue
@@ -33,9 +33,8 @@ public class Order {
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status; //주문상태(ORDER, CANCEL)
+    private OrderStatus status;
 
-    //==연관관계 메서드==//
     public void setMember(Member member){
         this.member=member;
         member.getOrders().add(this);

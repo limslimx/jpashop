@@ -6,9 +6,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Getter @Setter
+@Table(name = "order_item")
 @Entity
 public class OrderItem {
 
