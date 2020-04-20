@@ -8,8 +8,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.LAZY;
-
 @Getter @Setter
 @Entity
 public class Category {
@@ -21,12 +19,13 @@ public class Category {
     private String name;
 
     @ManyToMany
-    @JoinTable(name = "category_item",
+    @JoinTable(name="category_item",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items=new ArrayList<>();
 
-    @ManyToOne(fetch = LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
@@ -37,4 +36,9 @@ public class Category {
         this.child.add(child);
         child.setParent(this);
     }
+// 위의 메서드나 이 메서드나 동일한 의미임
+//    public void setParent(Category parent){
+//        this.parent=parent;
+//        parent.getChild().add(this);
+//    }
 }
