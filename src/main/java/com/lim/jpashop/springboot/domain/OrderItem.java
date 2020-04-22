@@ -1,12 +1,15 @@
 package com.lim.jpashop.springboot.domain;
 
 import com.lim.jpashop.springboot.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "order_item")
 @Entity
 public class OrderItem {
