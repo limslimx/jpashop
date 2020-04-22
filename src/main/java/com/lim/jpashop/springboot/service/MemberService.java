@@ -2,16 +2,14 @@ package com.lim.jpashop.springboot.service;
 
 import com.lim.jpashop.springboot.domain.Member;
 import com.lim.jpashop.springboot.repository.MemberRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true) //트랜잭션 처리기능 향상을 위해 조회만 가능하도록 한다. 아래서 만약에 조회 이외의 기능을 사용한다면 따로 @Transactional을 붙여주면 된다
 @Service
 public class MemberService {
 
@@ -27,6 +25,7 @@ public class MemberService {
      * @param member Member Entity
      * @return member`s Id(PK) 반환
      */
+    @Transactional //위에서 @Transactional에 readonly를 부여했기 때문에 조회 기능 이외의 기능을 쓰는 이 메서드에 @Transactional을 지정해줘야 한다
     public Long join(Member member){
         validateDuplicateMember(member); //중복 회원 검증
         memberRepository.save(member);
